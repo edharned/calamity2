@@ -1,10 +1,8 @@
+package calamity2;
 /*
  * 
  * This demo is set up to expose the "compensation threads" problem when
  *   using a ForkJoinPool.managedBlock() in a CountedCompleter.
- *   
- * You will need the current jar or source code for jsr166e found at:
- * http://gee.cs.oswego.edu/dl/concurrency-interest/
  * 
  *   
  *      ---  options  ---
@@ -56,9 +54,9 @@
  * 
  */
 
-import jsr166e.*;
-
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.CountedCompleter;
+import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -76,7 +74,7 @@ public class MultiRecurCountedManagedSubmit {
   static final int nbr_threads = 1; 
   
   // depth of recurrsion
-  static final int recur_count = 4;
+  static final int recur_count = 16;
     
   // count of number of user tasks created
   static final AtomicLong myCount = new AtomicLong(nbr_threads);

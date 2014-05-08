@@ -1,10 +1,12 @@
+package calamity2;
 
 // for current jdk1.8
-import jsr166e.*;
-// to use jdk1.7, comment the above import and uncomment below
-//import java.util.concurrent.*;
+// to use jdk1.7, run with that release
+//
 import java.util.Random;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.RecursiveTask;
 
 /**
  * This demo has the f/j pool being used by many concurrent requests. 

@@ -1,0 +1,119 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>What is in here</title>
+</head>
+
+<body>
+
+<blockquote>
+  <p>What is in here:</p>
+  <blockquote>
+        <p>Nested parallel forEach processing:</p>
+        <blockquote>
+        <p><b>NestedParallel.java</b></p>
+          <blockquote>
+        <p>This demo is for the Java8 version. This demo is set up to expose the 
+        failure of nested parallel forEach loops. The code is from an example by 
+        Christian P. Fries posted originally on StackOverflow at:<br>
+        <a href="http://stackoverflow.com/questions/23489993/nested-java-8-parallel-foreach-loop-perform-poor-is-this-behavior-expected">
+        http://stackoverflow.com/questions/23489993/nested-java-8-parallel-foreach-loop-perform-poor-is-this-behavior-expected</a> </p>
+          </blockquote>
+        </blockquote>
+        <p>Completable Future Failure when using a long completion chain:</p>
+        <blockquote>
+        <p><b>CFFailure.java</b></p>
+          <blockquote>
+        <p>This demo is for the Java8 version. The program prints the number of 
+        incomplete futures and just hangs since there is&nbsp; no recovery from 
+        a StackOverflowException.</p>
+          </blockquote>
+        </blockquote>
+        <p>Comparison between using the F/J pool to handle multiple submissions 
+        against a thread pool.</p>
+      <blockquote>
+        <p><b>MultiSubmitFJDemo.java</b></p>
+        <blockquote>
+        <p>This demo has the pool being used by many threads.
+        You will need lots of memory for this<br>
+&nbsp; -Xmx600m for 32 bit programs</p>
+        <ul>
+          <li>It creates threads. Each thread creates a long array to sum.</li>
+          <li>It wakes up the threads.</li>
+          <li>The threads submit the arrays for summing using the F/J pool.</li>
+          <li>The time to complete is printed.</li>
+          <li>Change the size of the arrays, number of threads to submit array objects 
+        and number of threads in the pool as you wish.</li>
+        </ul>
+        </blockquote>
+        <p><b>MultiSubmitTPoolDemo.java</b></p>
+        <blockquote>
+        <p>This demo simulates a thread pool used for sum.</p>
+          <ul>
+            <li>It creates threads to sum the arrays.</li>
+            <li>It creates the long arrays and puts them into a queue.</li>
+            <li>It wakes up the threads.</li>
+            <li>The threads fetch the long[] and sum.</li>
+            <li>The time to complete is printed.</li>
+            <li>Change the size of the arrays, number of array objects and number of 
+        threads as you wish.</li>
+          </ul>
+        </blockquote>
+    </blockquote>
+  <p>The multiple recursion demos </p>
+    <blockquote>
+      <p><b>MultiRecurSubmit.java</b></p>
+      <blockquote>
+        <p>This demo is for both the Java7 and Java8&nbsp; versions. Run it in 
+        whatever environment you wish.</p>
+      </blockquote>
+      <p><b>MultiRecurCountedSubmit.java</b></p>
+      <blockquote>
+        <p>This demo is for the Java8 version. Using a CountedCompleter()</p>
+        <p>Use of a profiler is necessary to see the excessive continuation threads 
+        when it doesn't just crash.</p>
+      </blockquote>
+      <p><b>MultiRecurCountedManagedSubmit.java</b></p>
+      <blockquote>
+        <p>This demo is for Java8 version. Using a ForkJoinPool.managedBlock() in a CountedCompleter.</p>
+      </blockquote>
+    </blockquote>
+        <p>The Out Of Memory Error</p>
+        <blockquote>
+          <p><b>OOM.java</b></p>
+          <blockquote>
+            <p>This demo is for the Java8 version.</p>
+            <p>This demo was copied from a problem submitted by Christian Mallwitz to the <a href="mailto:lambda-dev@openjdk.java.net">
+            lambda-dev@openjdk.java.net</a> The OOME was fixed in July, 2013. It 
+            now makes the parallel version run slower than the sequential 
+            version.</p>
+            <p>The second OOME is from a discussion on the core libraries: RFR 
+            8027316 Distinct operation. This still produces an OOME on 32bit 
+            systems.</p>
+            <p>It demonstrates the paraquential technique in that most parallel 
+            operations take more time then the sequential runs.</p>
+          </blockquote>
+        </blockquote>
+        <p>The sequential/parallel problem</p>
+        <blockquote>
+          <p><b>IntArraySum.java</b></p>
+          <blockquote>
+            <p>This demo is for the Java8 version.</p>
+            <p>You may also want an IDE to help run this program. The&nbsp; 
+            NetBeans 7.4 supports JDK1.8 as well as NetBeans 8</p>
+            <p>&nbsp;This demo was copied from a problem submitted by Sebastian 
+            Zarnekow to the <a href="mailto:lambda-dev@openjdk.java.net">
+            lambda-dev@openjdk.java.net</a></p>
+          </blockquote>
+        </blockquote>
+  </blockquote>
+</blockquote>
+
+<p>&nbsp;</p>
+
+</body>
+
+</html>

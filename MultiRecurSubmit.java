@@ -1,14 +1,12 @@
+package calamity2;
 /*
  * This is a simulation of the problem of excessive thread creation found here:
  * http://stackoverflow.com/questions/10797568/what-determines-the-number-of-threads-a-java-forkjoinpool-creates
  * 
  * It is now set up to expose the stall problem created by the patch to the original problem.
- * You will need the current jar or source code for jsr166e found at:
- * http://gee.cs.oswego.edu/dl/concurrency-interest/
+ * You will need the current JDK1.8
  * 
- * To run the simulation for Java7 (original problem), comment the 
- *   import jsr166e.*; line and uncomment the 
- *   import java.util.concurrent.*;
+ * To run the simulation for Java7 use the JDK1.7 release.
  *   
  *      ---  options  ---
  *   
@@ -50,9 +48,10 @@
  * 
  */
 
-import jsr166e.*;
 //import java.util.concurrent.*;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.RecursiveTask;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -64,10 +63,10 @@ public class MultiRecurSubmit {
   static final long NPS = (1000L * 1000 * 1000);
     
   // number of threads for FJPool
-  static final int FJParallism = Runtime.getRuntime().availableProcessors();
+  static final int FJParallism = Runtime.getRuntime().availableProcessors() * 2;
   
   // number of concurrent requests submitted
-  static final int nbr_threads = 2; 
+  static final int nbr_threads = 1; 
   
   // depth of recurrsion
   static final int recur_count = 16;
@@ -172,6 +171,7 @@ public class MultiRecurSubmit {
         
       // submit one request
       fjpool.invoke(S);
+       //ForkJoinPool.commonPool().invoke(S);
         
       System.out.printf("  " + my_name + " time: %7.9f\n", (double)(System.nanoTime() - last) / NPS);  
       

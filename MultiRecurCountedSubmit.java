@@ -1,11 +1,8 @@
+package calamity2;
 /*
  * 
  * This demo is set up to expose the "continuation threads" problem when
- *   using a join() in a CountedCompleter.
- *   
- * You will need the current jar or source code for jsr166e found at:
- * http://gee.cs.oswego.edu/dl/concurrency-interest/
- * 
+ *   using a join() in a CountedCompleter. 
  *   
  *      ---  options  ---
  *   
@@ -40,8 +37,9 @@
  * 
  */
 
-import jsr166e.*;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.CountedCompleter;
+import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -190,7 +188,6 @@ public class MultiRecurCountedSubmit {
         
       // submit one request
       fjpool.invoke(S);
-      
         
       System.out.printf("  " + my_name + " time: %7.9f\n", (double)(System.nanoTime() - last) / NPS);  
       
