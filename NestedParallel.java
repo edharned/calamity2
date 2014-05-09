@@ -58,8 +58,8 @@ public class NestedParallel {
 	
 	static final long	burningCount = 800;	// useless work count
   
-  // String message for each outer loop, will print at end of run
-  static final String[] println = new String[outerLoop];
+  // Thread message for each outer loop, will print at end of run
+  static final Thread[] println = new Thread[outerLoop];
 
   /**
    * Start of application
@@ -91,31 +91,25 @@ public class NestedParallel {
 		IntStream.range(0,outerLoop).parallel().forEach(i -> {
       
       // thread info, will print at end of run
-      println[i] = "" + i + "  " + Thread.currentThread();
+      println[i] = Thread.currentThread();
 
-			try {
-				if(isInnerStreamParallel) {
-					// inner loop as parallel
-					IntStream.range(0,innerLoop).parallel().forEach(j -> {
-						burnTime(10);
-					});						
-				}
-				else {
-					// inner loop as sequential
-					IntStream.range(0,innerLoop).sequential().forEach(j -> {
-						burnTime(10);
-					});
-				}      
-			} catch (Exception e) { System.out.println(e.toString()); }
+      if(isInnerStreamParallel) {
+        IntStream.range(0,innerLoop).parallel().forEach(j -> {
+          uselessWork(10);
+        });						
+      }
+      else {
+        IntStream.range(0,innerLoop).sequential().forEach(j -> {
+          uselessWork(10);
+        });
+      } 
 		});
 
 		long end = System.nanoTime();
     
     // print thread info
-    for (int i = 0; i < outerLoop; i++) {
-      
-      System.out.println(println[i]);
-    }
+    for (int i = 0; i < outerLoop; i++)       
+      System.out.println(i + "\t" + println[i]);    
 
     double elapsed = (double)(end - start) / NPS;
     System.out.printf("Elapsed time : %5.9f\n", elapsed);
@@ -127,7 +121,7 @@ public class NestedParallel {
    * @param millis
    * @return ignored
    */
-	private double burnTime(long millis) {
+	private double uselessWork(long millis) {
 		
     double back = 0.0;
 		long max = millis * burningCount;
